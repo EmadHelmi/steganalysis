@@ -1,6 +1,4 @@
 # Steganalysis in python with deep learning algorithms
-This is my university master project.
-
 This project consists of two major parts:
 + Steganography
 + Steganalysis
@@ -8,7 +6,7 @@ This project consists of two major parts:
 In this part I have downloaded matlab codes from [Jessica Fridrich website](http://www.ws.binghamton.edu/fridrich/) (you can also get the algorithms [here](http://dde.binghamton.edu/download/stego_algorithms/)).
 
 For embedding process I used these datasets:
-+ BSDS300 ([Downloal](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/BSDS300-images.tgz))
++ BSDS300 ([Download](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/bsds/BSDS300-images.tgz))
 + BSDS500 ([Download](http://www.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/BSR/BSR_bsds500.tgz))
 + INRIA-jpg1 ([Download](http://lear.inrialpes.fr/people/jegou/data.php))
 + INRIA-jpg2 ([Download](http://lear.inrialpes.fr/people/jegou/data.php))
