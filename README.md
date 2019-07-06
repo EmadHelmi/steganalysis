@@ -1,5 +1,6 @@
 # Steganalysis in python with deep learning algorithms
-This is my master university project.
+This is my university master project.
+
 This project consists of two major parts:
 + Steganography
 + Steganalysis
