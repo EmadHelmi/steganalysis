@@ -1,0 +1,1 @@
+./WOW -v -i ../images_cover/3.pgm -O ../images_stego -a 0.4 -p -0.1 -h 10
