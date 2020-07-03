@@ -1,6 +1,6 @@
 import keras
 import numpy as np
-import dateitme
+import datetime
 
 from keras.losses import BinaryCrossentropy
 from keras.callbacks import LambdaCallback
@@ -19,6 +19,7 @@ def train(
         epochs: int = 100,
         classes: int = 2,
         batch_size: int = 1,
+        verbose=True,
         out_dir: str = "saved_models"):
     (x_train, y_train), (x_test, y_test) = train_sets, test_sets
     y_train = keras.utils.to_categorical(y_train, classes)
@@ -35,14 +36,14 @@ def train(
         y_train,
         batch_size=batch_size,
         epochs=epochs,
-        verbose=1,
+        verbose=1 if verbose else 0,
         validation_data=(x_test, y_test),
         callbacks=[saver]
     )
     model.save("%s/%s_final.hd5" %
                (out_dir, datetime.datetime.now().date().strftime("%Y_%m_%d")))
     print("Model saved in %s as final.hdf5" % out_dir)
-    plot_results(history)
+    plot_results(history, epochs)
 
 
 if __name__ == "__main__":
@@ -50,10 +51,10 @@ if __name__ == "__main__":
     if args.assert_model:
         assert_model()
     (x_train, y_train), (x_test, y_test) = prepare_data(
-        args.clean_trainset_path,
-        args.clean_testset_path,
-        args.stego_trainset_path,
-        args.stego_testset_path,
+        args.ctrp,
+        args.ctep,
+        args.strp,
+        args.step,
         shuffle=args.shuffle
     )
     train(
@@ -64,5 +65,5 @@ if __name__ == "__main__":
         classes=args.nc,
         batch_size=args.bs,
         verbose=args.v,
-        out_dir=args.out_dir
+        out_dir=args.op
     )

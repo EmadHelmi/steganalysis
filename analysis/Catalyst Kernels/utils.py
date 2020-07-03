@@ -19,6 +19,8 @@ parser.add_argument("--strp", help="Stego Train Path (default=stego/train)",
                     type=str, default="stego/train")
 parser.add_argument("--step", help="Stego Test Path (default=stego/test)",
                     type=str, default="stego/test")
+parser.add_argument("--op", help="Output path for saved models",
+                    type=str, default="saved_models")
 parser.add_argument("--nc", type=int, default=2,
                     help="Number of classes (default=2)")
 parser.add_argument("--ne", type=int, default=100,
@@ -36,7 +38,7 @@ parser.add_argument("-v", action='store_true',
 
 class ModelSaver(keras.callbacks.Callback):
     def __init__(self, saved_models_path):
-        keras.callbacks.Callback.__init__()
+        keras.callbacks.Callback.__init__(self)
         self.out_dir = saved_models_path
         self.make_out_dir()
         self.subdir_name = datetime.datetime.now().date().strftime("%Y_%m_%d")
@@ -141,20 +143,20 @@ def prepare_data(
     return (x_train, y_train), (x_test, y_test)
 
 
-def plot_results(results):
+def plot_results(results, epochs):
     fig, (ax1, ax2) = plt.subplots(1, 2)
     ax1.set_xlabel("Epochs")
     ax1.set_ylabel("losses")
     ax1.plot(range(1, epochs+1),
-             history.history['val_loss'], label="validation loss", marker='o')
+             results.history['val_loss'], label="validation loss", marker='o')
     ax1.plot(range(1, epochs+1),
-             history.history['loss'], label="loss", marker='o')
+             results.history['loss'], label="loss", marker='o')
 
     ax2.set_xlabel("Epochs")
     ax2.set_ylabel("accuracies")
     ax2.plot(range(1, epochs+1),
-             history.history['accuracy'], label="accuracy", marker='o')
-    ax2.plot(range(1, epochs+1), history.history['val_accuracy'],
+             results.history['accuracy'], label="accuracy", marker='o')
+    ax2.plot(range(1, epochs+1), results.history['val_accuracy'],
              label="validation accuracy", marker='o')
     fig.legend()
     plt.show()
