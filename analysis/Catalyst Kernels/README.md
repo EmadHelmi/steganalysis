@@ -13,3 +13,8 @@ python main.py --ctrp <clean train path> --ctep <clean test path> --strp <stego 
 ```
 
 Also you can run `python main.py -h` to get more help
+
+## Results
+
+This is my first run result on **128*128 BossBase** images with **0.8 wow embedding**
+![](results/Figure_1.png)
