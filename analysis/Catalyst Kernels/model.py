@@ -1,0 +1,51 @@
+from keras.models import Sequential
+from keras.layers import (
+    Conv2D, Dense,
+    Flatten, BatchNormalization, LeakyReLU, Softmax
+)
+
+from filters import filters
+
+
+def build_model(input_shape):
+    model = Sequential()
+    # Conv Layer 1, Preprocessing
+    model.add(Conv2D(
+        4,
+        kernel_size=5,
+        kernel_initializer=filters,
+        input_shape=input_shape[1:],
+        strides=2,
+        name="Fixed_Filters",
+        trainable=False))
+    model.add(BatchNormalization())
+    model.add(LeakyReLU(alpha=0.1))
+
+    # Conv Layer 2, Feature learning
+    model.add(Conv2D(
+        5,
+        kernel_size=5,
+        strides=2
+    ))
+    model.add(BatchNormalization())
+    model.add(LeakyReLU(alpha=0.1))
+
+    # Conv Layer 3, Feature learning
+    model.add(Conv2D(
+        10,
+        kernel_size=5,
+        strides=2
+    ))
+    model.add(BatchNormalization())
+    model.add(LeakyReLU(alpha=0.1))
+
+    # Fully connected Layers, Binary classification
+    model.add(Flatten())
+    model.add(Dense(200))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(Dense(200))
+    model.add(LeakyReLU(alpha=0.1))
+    model.add(Dense(2))
+    model.add(Softmax())
+
+    return model

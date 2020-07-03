@@ -1,37 +1,9 @@
 #!/bin/bash
 # BOWS2OrigEp3 0.05
-INPUT_FILES=~/stego/datasets/BOWS2OrigEp3/bad_files/*.pgm
-OUTPUT_DIR="/root/stego/datasets/BOWS2OrigEp3/stego/wow/0.05"
+INPUT_FILES=/home/emadhelmi/myworks/stego/datasets/BOSSbase_1.01/total/PILresize/*
+OUTPUT_DIR="/home/emadhelmi/myworks/stego/datasets/BOSSbase_1.01/stego/0.8/wow_PILresize"
 for f in $INPUT_FILES
 do
-  echo "Embedding $f with 0.05 ..."
-  ./WOW -i $f -O $OUTPUT_DIR -a 0.05
+  echo "Embedding $f with 0.8 ..."
+  ./WOW -i $f -O $OUTPUT_DIR -a 0.8
 done
-
-# BOWS2OrigEp3 0.1
-INPUT_FILES=~/stego/datasets/BOWS2OrigEp3/bad_files/*.pgm
-OUTPUT_DIR="/root/stego/datasets/BOWS2OrigEp3/stego/wow/0.1"
-for f in $INPUT_FILES
-do
-  echo "Embedding $f with 0.1 ..."
-  ./WOW -i $f -O $OUTPUT_DIR -a 0.1
-done
-
-# BOWS2OrigEp3 0.2
-INPUT_FILES=~/stego/datasets/BOWS2OrigEp3/bad_files/*.pgm
-OUTPUT_DIR="/root/stego/datasets/BOWS2OrigEp3/stego/wow/0.2"
-for f in $INPUT_FILES
-do
-  echo "Embedding $f with 0.2 ..."
-  ./WOW -i $f -O $OUTPUT_DIR -a 0.2
-done
-
-# BOWS2OrigEp3 0.4
-INPUT_FILES=~/stego/datasets/BOWS2OrigEp3/bad_files/*.pgm
-OUTPUT_DIR="/root/stego/datasets/BOWS2OrigEp3/stego/wow/0.4"
-for f in $INPUT_FILES
-do
-  echo "Embedding $f with 0.4 ..."
-  ./WOW -i $f -O $OUTPUT_DIR -a 0.4
-done
-
