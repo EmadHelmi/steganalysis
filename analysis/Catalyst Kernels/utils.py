@@ -50,7 +50,6 @@ class ModelSaver(keras.callbacks.Callback):
 
     def on_epoch_end(self, epoch, logs={}):
         if epoch and epoch % 10 == 0:
-            print(epoch)
             self.model.save("%s/%s/checkpoint_%s.hd5" %
                             (self.out_dir, self.subdir_name, epoch))
             print("Model saved in %s/%s as checkpoint_%s.hd5" %
@@ -145,19 +144,34 @@ def prepare_data(
 
 
 def plot_results(results, epochs):
-    fig, (ax1, ax2) = plt.subplots(1, 2)
+    _, (ax1, ax2) = plt.subplots(1, 2)
+
     ax1.set_xlabel("Epochs")
-    ax1.set_ylabel("losses")
-    ax1.plot(range(1, epochs+1),
-             results.history['val_loss'], label="validation loss", marker='o')
-    ax1.plot(range(1, epochs+1),
-             results.history['loss'], label="loss", marker='o')
+    ax1.set_ylabel("Losses")
+    ax1.plot(
+        range(1, epochs+1),
+        results.history['val_loss'],
+        label="Validation loss",
+        marker='o')
+    ax1.plot(
+        range(1, epochs+1),
+        results.history['loss'],
+        label="loss",
+        marker='o')
+    ax1.legend()
 
     ax2.set_xlabel("Epochs")
-    ax2.set_ylabel("accuracies")
-    ax2.plot(range(1, epochs+1),
-             results.history['accuracy'], label="accuracy", marker='o')
-    ax2.plot(range(1, epochs+1), results.history['val_accuracy'],
-             label="validation accuracy", marker='o')
-    fig.legend()
+    ax2.set_ylabel("Accuracies")
+    ax2.plot(
+        range(1, epochs+1),
+        [accuracy * 100 for accuracy in results.history['accuracy']],
+        label="Accuracy",
+        marker='o')
+    ax2.plot(
+        range(1, epochs+1),
+        [accuracy * 100 for accuracy in results.history['val_accuracy']],
+        label="validation accuracy",
+        marker='o')
+    ax2.legend()
+
     plt.show()
