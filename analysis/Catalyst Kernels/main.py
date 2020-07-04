@@ -40,7 +40,7 @@ def train(
         validation_data=(x_test, y_test),
         callbacks=[saver]
     )
-    model.save("%s/%s_final.hd5" %
+    model.save("%s/%s/final.hd5" %
                (out_dir, datetime.datetime.now().date().strftime("%Y_%m_%d")))
     print("Model saved in %s as final.hdf5" % out_dir)
     plot_results(history, epochs)

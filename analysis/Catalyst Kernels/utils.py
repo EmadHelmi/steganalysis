@@ -40,19 +40,20 @@ class ModelSaver(keras.callbacks.Callback):
     def __init__(self, saved_models_path):
         keras.callbacks.Callback.__init__(self)
         self.out_dir = saved_models_path
-        self.make_out_dir()
         self.subdir_name = datetime.datetime.now().date().strftime("%Y_%m_%d")
+        self.make_out_dir()
 
     def make_out_dir(self):
-        if not os.path.isdir(self.out_dir):
+        if not os.path.isdir(self.out_dir + "/" + self.subdir_name):
             print("Output directory does not exists, so we create it")
-            os.makedirs(self.out_dir)
+            os.makedirs(self.out_dir + "/" + self.subdir_name)
 
     def on_epoch_end(self, epoch, logs={}):
-        if epoch % 10 == 0:
-            self.model.save("%s/%s_%s.hd5" %
+        if epoch and epoch % 10 == 0:
+            print(epoch)
+            self.model.save("%s/%s/checkpoint_%s.hd5" %
                             (self.out_dir, self.subdir_name, epoch))
-            print("Model saved in %s as %s_%s.hd5" %
+            print("Model saved in %s/%s as checkpoint_%s.hd5" %
                   (self.out_dir, self.subdir_name, epoch))
 
 
