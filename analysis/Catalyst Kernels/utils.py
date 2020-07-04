@@ -58,7 +58,7 @@ class ModelSaver(keras.callbacks.Callback):
 
     def make_out_dir(self):
         """
-        The function to make the output directory
+        The function to make the output directory.
         """
         if not os.path.isdir(self.out_dir + "/" + self.subdir_name):
             print("Output directory does not exists, so we create it")
@@ -164,15 +164,15 @@ def prepare_data(
     The function will prepare data based on input arguments.
 
     Parameters:
-        cover_trainset_path (str): Path of cover train set images
-        cover_testset_path (str): Path of cover test set images
-        stego_trainset_path (str): Path of stego train set images
-        stego_testset_path (str): Path of stego test set images
-        shuffle (bool): Wether to shuffle data
+        cover_trainset_path (str): Path of cover train set images.
+        cover_testset_path (str): Path of cover test set images.
+        stego_trainset_path (str): Path of stego train set images.
+        stego_testset_path (str): Path of stego test set images.
+        shuffle (bool): Wether to shuffle data.
 
     Returns:
-        (numpy.array, numpy.array): (train images, train labels)
-        (numpy.array, numpy.array): (test images, test labels)
+        (numpy.array, numpy.array): (train images, train labels).
+        (numpy.array, numpy.array): (test images, test labels).
 
     """
     print("Loading data...")

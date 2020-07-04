@@ -12,7 +12,7 @@ def filters(shape, dtype=None):
         shape (tuple): The shape of filters.
 
     Returns:
-        K.variable: A keras variable for the model
+        K.variable: A keras variable for the model.
     """
     f_kv = (1/12) * np.array([
         [[-1], [2], [-2], [2], [-1]],
