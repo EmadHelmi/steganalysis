@@ -11,10 +11,10 @@ from model import build_model
 
 parser = argparse.ArgumentParser(
     description='Train Catalyst Kernels algorithm on some dataset')
-parser.add_argument("--ctrp", help="Clean Train Path (default=clean/train)",
-                    type=str, default="clean/train")
-parser.add_argument("--ctep", help="Clean Test Path (default=clean/test)",
-                    type=str, default="clean/test")
+parser.add_argument("--ctrp", help="Cover Train Path (default=cover/train)",
+                    type=str, default="cover/train")
+parser.add_argument("--ctep", help="Cover Test Path (default=cover/test)",
+                    type=str, default="cover/test")
 parser.add_argument("--strp", help="Stego Train Path (default=stego/train)",
                     type=str, default="stego/train")
 parser.add_argument("--step", help="Stego Test Path (default=stego/test)",
@@ -57,23 +57,23 @@ class ModelSaver(keras.callbacks.Callback):
 
 
 def load_data(
-        clean_trainset_path,
-        clean_testset_path,
+        cover_trainset_path,
+        cover_testset_path,
         stego_trainset_path,
         stego_testset_path):
     # Loading Train data
-    x_train_clean = np.array([np.array(Image.open(clean_trainset_path + "/" + fname))
-                              for fname in os.listdir(clean_trainset_path)])
-    y_train_clean = [0 for i in range(len(os.listdir(clean_trainset_path)))]
+    x_train_cover = np.array([np.array(Image.open(cover_trainset_path + "/" + fname))
+                              for fname in os.listdir(cover_trainset_path)])
+    y_train_cover = [0 for i in range(len(os.listdir(cover_trainset_path)))]
 
     x_train_stego = np.array([np.array(Image.open(stego_trainset_path + "/" + fname))
                               for fname in os.listdir(stego_trainset_path)])
     y_train_stego = [1 for i in range(len(os.listdir(stego_trainset_path)))]
 
     # Loading Test data
-    x_test_clean = np.array([np.array(Image.open(clean_testset_path + "/" + fname))
-                             for fname in os.listdir(clean_testset_path)])
-    y_test_clean = [0 for i in range(len(os.listdir(clean_testset_path)))]
+    x_test_cover = np.array([np.array(Image.open(cover_testset_path + "/" + fname))
+                             for fname in os.listdir(cover_testset_path)])
+    y_test_cover = [0 for i in range(len(os.listdir(cover_testset_path)))]
 
     x_test_stego = np.array([np.array(Image.open(stego_testset_path + "/" + fname))
                              for fname in os.listdir(stego_testset_path)])
@@ -81,23 +81,23 @@ def load_data(
 
     # Reshape train and test data to be in (n,row,col,chan) format
     # NOTE: If your tensor backend set to be channel first, please edit these lines
-    x_train_clean = x_train_clean.reshape(
-        x_train_clean.shape[0], x_train_clean.shape[1], x_train_clean.shape[2], 1)
+    x_train_cover = x_train_cover.reshape(
+        x_train_cover.shape[0], x_train_cover.shape[1], x_train_cover.shape[2], 1)
     x_train_stego = x_train_stego.reshape(
         x_train_stego.shape[0], x_train_stego.shape[1], x_train_stego.shape[2], 1)
-    x_test_clean = x_test_clean.reshape(
-        x_test_clean.shape[0], x_test_clean.shape[1], x_test_clean.shape[2], 1)
+    x_test_cover = x_test_cover.reshape(
+        x_test_cover.shape[0], x_test_cover.shape[1], x_test_cover.shape[2], 1)
     x_test_stego = x_test_stego.reshape(
         x_test_stego.shape[0], x_test_stego.shape[1], x_test_stego.shape[2], 1)
 
     # Concat datasets
-    x_train = np.concatenate((x_train_clean, x_train_stego), axis=0)
+    x_train = np.concatenate((x_train_cover, x_train_stego), axis=0)
     y_train = np.concatenate(
-        (np.array(y_train_clean), np.array(y_train_stego)), axis=0)
+        (np.array(y_train_cover), np.array(y_train_stego)), axis=0)
 
-    x_test = np.concatenate((x_test_clean, x_test_stego), axis=0)
+    x_test = np.concatenate((x_test_cover, x_test_stego), axis=0)
     y_test = np.concatenate(
-        (np.array(y_test_clean), np.array(y_test_stego)), axis=0)
+        (np.array(y_test_cover), np.array(y_test_stego)), axis=0)
     return (x_train, y_train), (x_test, y_test)
 
 
@@ -112,16 +112,16 @@ def assert_model(input_shape=(1, 128, 128, 1)):
 
 
 def prepare_data(
-    clean_trainset_path,
-    clean_testset_path,
+    cover_trainset_path,
+    cover_testset_path,
     stego_trainset_path,
     stego_testset_path,
     shuffle=True
 ):
     print("Loading data...")
     (x_train, y_train), (x_test, y_test) = load_data(
-        clean_trainset_path,
-        clean_testset_path,
+        cover_trainset_path,
+        cover_testset_path,
         stego_trainset_path,
         stego_testset_path
     )
