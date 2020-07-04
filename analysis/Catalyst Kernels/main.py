@@ -21,6 +21,19 @@ def train(
         batch_size: int = 1,
         verbose=True,
         out_dir: str = "saved_models"):
+    """
+    The function to train the model.
+
+    Parameters:
+        train_sets (tuple): A tuple of np.array for train images and train labels.
+        test_sets (tuple): A tuple of np.array for test images and test labels.
+        input shape (tuple): Input shape of the model. It should be in the form of (1, ..., ...).
+        epochs (int): The number of epochs.
+        classes (int): The number of classes.
+        batch_size (int): The number of batch size.
+        verbose (bool): Wether to show the progress of each epoch.
+        out_dir (str): The output dir for saving the model in.
+    """
     (x_train, y_train), (x_test, y_test) = train_sets, test_sets
     y_train = keras.utils.to_categorical(y_train, classes)
     y_test = keras.utils.to_categorical(y_test, classes)

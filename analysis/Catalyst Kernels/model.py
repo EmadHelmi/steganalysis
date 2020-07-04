@@ -8,6 +8,15 @@ from filters import filters
 
 
 def build_model(input_shape):
+    """
+    The function to build the model based on any architecture.
+
+    Parameters:
+        input_shape (tuple): The input shape of the model. It should be in the form of (1, ..., ...).
+
+    Returns:
+        keras.Sequential: The built model.
+    """
     model = Sequential()
     # Conv Layer 1, Preprocessing
     model.add(Conv2D(

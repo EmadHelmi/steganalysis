@@ -37,18 +37,41 @@ parser.add_argument("-v", action='store_true',
 
 
 class ModelSaver(keras.callbacks.Callback):
+    """
+    This class is used for saving model in specific epochs.
+
+    Attributes:
+        saved_models_path (str): The path which models will be saved in.
+    """
+
     def __init__(self, saved_models_path):
+        """
+        The constructor for ModelSaver class.
+
+        Parameters:
+            saved_models_path (str): The path which models will be saved in.
+        """
         keras.callbacks.Callback.__init__(self)
         self.out_dir = saved_models_path
         self.subdir_name = datetime.datetime.now().date().strftime("%Y_%m_%d")
         self.make_out_dir()
 
     def make_out_dir(self):
+        """
+        The function to make the output directory
+        """
         if not os.path.isdir(self.out_dir + "/" + self.subdir_name):
             print("Output directory does not exists, so we create it")
             os.makedirs(self.out_dir + "/" + self.subdir_name)
 
     def on_epoch_end(self, epoch, logs={}):
+        """
+        The function which will be run on each epoch end.
+
+        Parameters:
+            epoch (int): The epoch number.
+            logs (dict): Will be more information about the epoch.
+        """
         if epoch and epoch % 10 == 0:
             self.model.save("%s/%s/checkpoint_%s.hd5" %
                             (self.out_dir, self.subdir_name, epoch))
@@ -61,7 +84,19 @@ def load_data(
         cover_testset_path,
         stego_trainset_path,
         stego_testset_path):
-    # Loading Train data
+    """
+    The function will load data based on paths.
+
+    Parameters:
+        cover_trainset_path (str): Path of cover train set images
+        cover_testset_path (str): Path of cover test set images
+        stego_trainset_path (str): Path of stego train set images
+        stego_testset_path (str): Path of stego test set images
+
+    Returns:
+        (numpy.array, numpy.array): (train images, train labels)
+        (numpy.array, numpy.array): (test images, test labels)
+    """
     x_train_cover = np.array([np.array(Image.open(cover_trainset_path + "/" + fname))
                               for fname in os.listdir(cover_trainset_path)])
     y_train_cover = [0 for i in range(len(os.listdir(cover_trainset_path)))]
@@ -70,7 +105,6 @@ def load_data(
                               for fname in os.listdir(stego_trainset_path)])
     y_train_stego = [1 for i in range(len(os.listdir(stego_trainset_path)))]
 
-    # Loading Test data
     x_test_cover = np.array([np.array(Image.open(cover_testset_path + "/" + fname))
                              for fname in os.listdir(cover_testset_path)])
     y_test_cover = [0 for i in range(len(os.listdir(cover_testset_path)))]
@@ -102,6 +136,14 @@ def load_data(
 
 
 def assert_model(input_shape=(1, 128, 128, 1)):
+    """
+    The function to assert built model with a dummy input.
+
+    This function will raise an error when it has any problem with built model.
+
+    Parameters:
+        input_shape (tuple): Tuple of the input of the model. It should be in the form of (1, ..., ...).
+    """
     test_image = np.random.rand(*input_shape)
     model = build_model(input_shape)
     model.summary()
@@ -118,6 +160,21 @@ def prepare_data(
     stego_testset_path,
     shuffle=True
 ):
+    """
+    The function will prepare data based on input arguments.
+
+    Parameters:
+        cover_trainset_path (str): Path of cover train set images
+        cover_testset_path (str): Path of cover test set images
+        stego_trainset_path (str): Path of stego train set images
+        stego_testset_path (str): Path of stego test set images
+        shuffle (bool): Wether to shuffle data
+
+    Returns:
+        (numpy.array, numpy.array): (train images, train labels)
+        (numpy.array, numpy.array): (test images, test labels)
+
+    """
     print("Loading data...")
     (x_train, y_train), (x_test, y_test) = load_data(
         cover_trainset_path,
@@ -144,6 +201,13 @@ def prepare_data(
 
 
 def plot_results(results, epochs):
+    """
+    The function to show results on each epoch.
+
+    Parameters:
+        results (keras.history): History of each epoch. It comes directly from keras.
+        epochs (int): The number of epochs.
+    """
     _, (ax1, ax2) = plt.subplots(1, 2)
 
     ax1.set_xlabel("Epochs")

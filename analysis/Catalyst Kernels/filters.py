@@ -3,6 +3,17 @@ import keras.backend as K
 
 
 def filters(shape, dtype=None):
+    """
+    The function to build first layer filters.
+
+    This function will raise an exception when the input shape does not match maked filters.
+
+    Parametrs:
+        shape (tuple): The shape of filters.
+
+    Returns:
+        K.variable: A keras variable for the model
+    """
     f_kv = (1/12) * np.array([
         [[-1], [2], [-2], [2], [-1]],
         [[2], [-6], [8], [-6], [2]],
