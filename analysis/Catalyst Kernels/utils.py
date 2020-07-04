@@ -97,41 +97,105 @@ def load_data(
         (numpy.array, numpy.array): (train images, train labels)
         (numpy.array, numpy.array): (test images, test labels)
     """
-    x_train_cover = np.array([np.array(Image.open(cover_trainset_path + "/" + fname))
-                              for fname in os.listdir(cover_trainset_path)])
-    y_train_cover = [0 for i in range(len(os.listdir(cover_trainset_path)))]
+    # Load train data cover images
+    x_train_cover = np.array(
+        [
+            np.array(
+                Image.open(cover_trainset_path + "/" + fname)
+            )
+            for fname in os.listdir(cover_trainset_path)
+        ])
+    # Set train data cover image labels
+    y_train_cover = [
+        0 for i in range(len(os.listdir(cover_trainset_path)))
+    ]
 
-    x_train_stego = np.array([np.array(Image.open(stego_trainset_path + "/" + fname))
-                              for fname in os.listdir(stego_trainset_path)])
-    y_train_stego = [1 for i in range(len(os.listdir(stego_trainset_path)))]
+    # Load train data stego images
+    x_train_stego = np.array(
+        [
+            np.array(
+                Image.open(stego_trainset_path + "/" + fname)
+            )
+            for fname in os.listdir(stego_trainset_path)
+        ])
+    # Set train data stego image labels
+    y_train_stego = [
+        1 for i in range(len(os.listdir(stego_trainset_path)))
+    ]
 
-    x_test_cover = np.array([np.array(Image.open(cover_testset_path + "/" + fname))
-                             for fname in os.listdir(cover_testset_path)])
-    y_test_cover = [0 for i in range(len(os.listdir(cover_testset_path)))]
+    # Load test data cover images
+    x_test_cover = np.array(
+        [
+            np.array(
+                Image.open(cover_testset_path + "/" + fname)
+            )
+            for fname in os.listdir(cover_testset_path)
+        ])
+    # Set test data cover image labels
+    y_test_cover = [
+        0 for i in range(len(os.listdir(cover_testset_path)))
+    ]
 
-    x_test_stego = np.array([np.array(Image.open(stego_testset_path + "/" + fname))
-                             for fname in os.listdir(stego_testset_path)])
-    y_test_stego = [1 for i in range(len(os.listdir(stego_testset_path)))]
+    # Load test data stego images
+    x_test_stego = np.array(
+        [
+            np.array(
+                Image.open(stego_testset_path + "/" + fname)
+            )
+            for fname in os.listdir(stego_testset_path)
+        ]
+    )
+
+    # Set test data stego image labels
+    y_test_stego = [
+        1 for i in range(len(os.listdir(stego_testset_path)))
+    ]
 
     # Reshape train and test data to be in (n,row,col,chan) format
     # NOTE: If your tensor backend set to be channel first, please edit these lines
     x_train_cover = x_train_cover.reshape(
-        x_train_cover.shape[0], x_train_cover.shape[1], x_train_cover.shape[2], 1)
+        (
+            x_train_cover.shape[0],
+            x_train_cover.shape[1],
+            x_train_cover.shape[2],
+            1
+        ))
     x_train_stego = x_train_stego.reshape(
-        x_train_stego.shape[0], x_train_stego.shape[1], x_train_stego.shape[2], 1)
+        (
+            x_train_stego.shape[0],
+            x_train_stego.shape[1],
+            x_train_stego.shape[2],
+            1
+        ))
     x_test_cover = x_test_cover.reshape(
-        x_test_cover.shape[0], x_test_cover.shape[1], x_test_cover.shape[2], 1)
+        (
+            x_test_cover.shape[0],
+            x_test_cover.shape[1],
+            x_test_cover.shape[2],
+            1
+        ))
     x_test_stego = x_test_stego.reshape(
-        x_test_stego.shape[0], x_test_stego.shape[1], x_test_stego.shape[2], 1)
+        (
+            x_test_stego.shape[0],
+            x_test_stego.shape[1],
+            x_test_stego.shape[2],
+            1
+        ))
 
     # Concat datasets
-    x_train = np.concatenate((x_train_cover, x_train_stego), axis=0)
+    x_train = np.concatenate(
+        (x_train_cover, x_train_stego),
+        axis=0)
     y_train = np.concatenate(
-        (np.array(y_train_cover), np.array(y_train_stego)), axis=0)
+        (np.array(y_train_cover), np.array(y_train_stego)),
+        axis=0)
 
-    x_test = np.concatenate((x_test_cover, x_test_stego), axis=0)
+    x_test = np.concatenate(
+        (x_test_cover, x_test_stego),
+        axis=0)
     y_test = np.concatenate(
-        (np.array(y_test_cover), np.array(y_test_stego)), axis=0)
+        (np.array(y_test_cover), np.array(y_test_stego)),
+        axis=0)
     return (x_train, y_train), (x_test, y_test)
 
 

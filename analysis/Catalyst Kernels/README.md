@@ -4,6 +4,9 @@
 
 This code is an implementation of the mentioned paper above in the title. You can also find that paper [here](https://link.springer.com/chapter/10.1007/978-3-319-97749-2_9).
 
+The proposed model structure is as below.
+![](static/model.png)
+
 ## How to run the code
 
 You can run the code as below:
@@ -17,4 +20,4 @@ Also you can run `python main.py -h` to get more help
 ## Results
 
 This is my first run result on **128*128 BossBase** images with **0.8 wow embedding**
-![](results/Figure_1.png)
+![](results/1st_result.png)
