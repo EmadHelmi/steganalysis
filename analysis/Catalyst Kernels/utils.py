@@ -11,14 +11,14 @@ from model import build_model
 
 parser = argparse.ArgumentParser(
     description='Train Catalyst Kernels algorithm on some dataset')
-parser.add_argument("--ctrp", help="Cover Train Path (default=cover/train)",
-                    type=str, default="cover/train")
-parser.add_argument("--ctep", help="Cover Test Path (default=cover/test)",
-                    type=str, default="cover/test")
-parser.add_argument("--strp", help="Stego Train Path (default=stego/train)",
-                    type=str, default="stego/train")
-parser.add_argument("--step", help="Stego Test Path (default=stego/test)",
-                    type=str, default="stego/test")
+parser.add_argument("--ctrp", help="Cover Train Path (default=dataset/train/cover)",
+                    type=str, default="dataset/train/cover")
+parser.add_argument("--ctep", help="Cover Test Path (default=dataset/test/cover)",
+                    type=str, default="dataset/test/cover")
+parser.add_argument("--strp", help="Stego Train Path (default=dataset/train/stego)",
+                    type=str, default="dataset/train/stego")
+parser.add_argument("--step", help="Stego Test Path (default=dataset/test/stego)",
+                    type=str, default="dataset/test/stego")
 parser.add_argument("--op", help="Output path for saved models",
                     type=str, default="saved_models")
 parser.add_argument("--nc", type=int, default=2,
