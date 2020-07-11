@@ -264,7 +264,7 @@ def prepare_data(
     return (x_train, y_train), (x_test, y_test)
 
 
-def plot_results(results, epochs):
+def plot_results(results, epochs, out_dir):
     """
     The function to show results on each epoch.
 
@@ -302,4 +302,14 @@ def plot_results(results, epochs):
         marker='o')
     ax2.legend()
 
+    plt.tight_layout()
+    plt.savefig(
+        "%s/%s/result.png" % (
+            out_dir,
+            datetime.datetime.now().date().strftime("%Y_%m_%d")
+        ),
+        format="png",
+        pad_inches=0.5,
+        dpi=600
+    )
     plt.show()

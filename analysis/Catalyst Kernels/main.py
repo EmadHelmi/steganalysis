@@ -56,7 +56,11 @@ def train(
     model.save("%s/%s/final.hd5" %
                (out_dir, datetime.datetime.now().date().strftime("%Y_%m_%d")))
     print("Model saved in %s as final.hd5" % out_dir)
-    plot_results(history, epochs)
+    plot_results(
+        history,
+        epochs,
+        out_dir
+    )
 
 
 if __name__ == "__main__":
