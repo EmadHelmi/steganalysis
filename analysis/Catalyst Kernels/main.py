@@ -12,6 +12,11 @@ from model import build_model
 from utils import parser, prepare_data, assert_model, plot_results, ModelSaver
 
 
+config = ConfigProto()
+config.gpu_options.allow_growth = True
+session = InteractiveSession(config=config)
+
+
 def train(
         train_sets: tuple,
         test_sets: tuple,
