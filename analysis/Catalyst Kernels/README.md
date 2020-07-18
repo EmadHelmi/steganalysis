@@ -43,10 +43,14 @@ There is also a Colab code available [here](https://colab.research.google.com/dr
 
 ### BOSSbase_1.01
 
+You can download the raw dataset from this [link](http://agents.fel.cvut.cz/stegodata/BossBase-1.01-cover.tar.bz2).
+
 - Embedded with `wow` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
 - Embedded with `s-uniward` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
 
 ### BOWS2OrigEp3
+
+You can download the raw dataset from this [link](http://bows2.ec-lille.fr/BOWS2OrigEp3.tgz).
 
 - Embedded with `wow` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
 - Embedded with `s-uniward` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
