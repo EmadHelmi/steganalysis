@@ -4,13 +4,13 @@ DatasetPath="$HOME/myworks/stego/datasets"
 DatasetName="BOSSbase_1.01"
 
 ResizeMode="PILresize"
-EmbeddingAlgorithm="wow"
+EmbeddingAlgorithm="s-uniward"
 EmbeddingRatio="0.8"
 
 TrainTest="80.20"
 
 OutputPath="results"
-ModelName=${DatasetName}_${TrainTest}_${EmbeddingRatio}
+ModelName=${DatasetName}_${EmbeddingAlgorithm}_${TrainTest}_${EmbeddingRatio}
 
 python main.py \
 	--ctrp $DatasetPath/$DatasetName/cover/$ResizeMode/train \

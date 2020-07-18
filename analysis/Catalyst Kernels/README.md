@@ -4,8 +4,12 @@
 
 This code is an implementation of the mentioned paper above in the title. You can also find that paper [here](https://link.springer.com/chapter/10.1007/978-3-319-97749-2_9).
 
-The proposed model structure is as below.
-![](static/model.png)
+The proposed model structure based on versions are as below.
+!["V1.0.0"](static/model-V1.0.0.png)
+*Model V1.0.0*
+
+!["V1.1.0"](static/model-V1.1.0.png)
+*Model V1.1.0*
 
 ## How to run the code
 

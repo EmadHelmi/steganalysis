@@ -8,7 +8,7 @@ from keras.optimizers import RMSprop
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
 
-from model import build_model
+from models.model_v1_0_0 import build_model
 from utils import parser, prepare_data, assert_model, plot_results, ModelSaver
 
 

@@ -7,7 +7,7 @@ import datetime
 
 from PIL import Image
 
-from model import build_model
+from models.model_v1_0_0 import build_model
 
 parser = argparse.ArgumentParser(
     description='Train Catalyst Kernels algorithm on some dataset')
@@ -309,7 +309,8 @@ def plot_results(results, epochs, out_dir):
             datetime.datetime.now().date().strftime("%Y_%m_%d")
         ),
         format="png",
+        papertype="letter",
         pad_inches=0.5,
-        dpi=600
+        dpi=1000
     )
     plt.show()
