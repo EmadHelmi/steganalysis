@@ -46,6 +46,11 @@ There is also a Colab code available [here](https://colab.research.google.com/dr
 - Embedded with `wow` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
 - Embedded with `s-uniward` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
 
+### BOWS2OrigEp3
+
+- Embedded with `wow` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
+- Embedded with `s-uniward` algorithm and embedding rates: `0.8`, `0.4`, `0.2` and `0.1`
+
 ## Results
 
 This is my first run result on **128*128 BossBase** images with **0.8 wow embedding**
