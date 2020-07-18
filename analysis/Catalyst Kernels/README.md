@@ -16,7 +16,6 @@ This is the basic model represented in the main paper.
 This is a forked version of the main model. In this model we add `Dropout` before some nodes.
 !["V1.1.0"](static/model-V1.1.0.png)
 
-
 ## How to run the code
 
 You can run the code as below:
