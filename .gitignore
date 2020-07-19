@@ -167,4 +167,7 @@ pip-selfcheck.json
 saved_models/
 results/
 
+# custom files
+.csv
+
 # End of https://www.toptal.com/developers/gitignore/api/linux,python,venv

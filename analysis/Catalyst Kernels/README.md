@@ -31,8 +31,8 @@ python main.py \
 --bs <batch size> \
 --assert_model <if you want to assert your model> \
 --shuffle <if you want to shuffle your data> \
--v <to verbose the output of training> \
 --op <output path for saved models>
+-v <Verbosity level> \
 ```
 
 Also you can run `python main.py -h` to get more help

@@ -3,7 +3,7 @@ import numpy as np
 import datetime
 
 from keras.losses import BinaryCrossentropy
-from keras.callbacks import LambdaCallback
+from keras.callbacks import LambdaCallback, CSVLogger
 from keras.optimizers import RMSprop
 from tensorflow.compat.v1 import ConfigProto
 from tensorflow.compat.v1 import InteractiveSession
@@ -24,7 +24,7 @@ def train(
         epochs: int = 100,
         classes: int = 2,
         batch_size: int = 1,
-        verbose=True,
+        verbose=1,
         out_dir: str = "saved_models"):
     """
     The function to train the model.
@@ -49,14 +49,20 @@ def train(
         metrics=['accuracy']
     )
     saver = ModelSaver(out_dir)
+    csv_logger = CSVLogger(
+        "%s/%s/log.csv" %
+        (out_dir, datetime.datetime.now().date().strftime("%Y_%m_%d")),
+        append=True,
+        separator=','
+    )
     history = model.fit(
         x_train,
         y_train,
         batch_size=batch_size,
         epochs=epochs,
-        verbose=1 if verbose else 0,
+        verbose=verbose,
         validation_data=(x_test, y_test),
-        callbacks=[saver]
+        callbacks=[saver, csv_logger]
     )
     model.save("%s/%s/final.hd5" %
                (out_dir, datetime.datetime.now().date().strftime("%Y_%m_%d")))

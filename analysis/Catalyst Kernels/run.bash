@@ -1,10 +1,10 @@
 #!/bin/bash
 
 DatasetPath="$HOME/myworks/stego/datasets"
-DatasetName="BOSSbase_1.01"
+DatasetName="BOWS2OrigEp3"
 
 ResizeMode="PILresize"
-EmbeddingAlgorithm="s-uniward"
+EmbeddingAlgorithm="wow"
 EmbeddingRatio="0.8"
 
 TrainTest="80.20"
@@ -18,4 +18,5 @@ python main.py \
 	--strp $DatasetPath/$DatasetName/stego/$EmbeddingRatio/${EmbeddingAlgorithm}_${ResizeMode}/train \
 	--step $DatasetPath/$DatasetName/stego/$EmbeddingRatio/${EmbeddingAlgorithm}_${ResizeMode}/test \
 	--op $OutputPath/$ModelName \
-	--shuffle -v
+	--shuffle \
+	-v 1

@@ -32,8 +32,8 @@ parser.add_argument("--assert_model", action="store_true",
 parser.add_argument("--shuffle", action="store_true",
                     help="Wether to shuffle the data or not")
 
-parser.add_argument("-v", action='store_true',
-                    help="Verbose the progress of training or not")
+parser.add_argument("-v", default=1,
+                    help="Verbosity level (0: silent, 1: complete, 2: compact, default=1)")
 
 
 class ModelSaver(keras.callbacks.Callback):
