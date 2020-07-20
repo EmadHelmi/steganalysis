@@ -72,7 +72,7 @@ class ModelSaver(keras.callbacks.Callback):
             epoch (int): The epoch number.
             logs (dict): Will be more information about the epoch.
         """
-        if epoch and epoch % 10 == 0:
+        if ((epoch-1) and ((epoch-1) % 10 == 0)):
             self.model.save("%s/%s/checkpoint_%s.hd5" %
                             (self.out_dir, self.subdir_name, epoch))
             print("Model saved in %s/%s as checkpoint_%s.hd5" %

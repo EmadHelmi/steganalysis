@@ -1,7 +1,7 @@
 #!/bin/bash
 
 DatasetPath="$HOME/myworks/stego/datasets"
-DatasetName="BOWS2OrigEp3"
+DatasetName="Mix"
 
 ResizeMode="PILresize"
 EmbeddingAlgorithm="wow"
