@@ -60,4 +60,4 @@ You can download the raw dataset from this [link](http://bows2.ec-lille.fr/BOWS2
 This is my first run result on **128*128 BossBase** images with **0.8 wow embedding**
 ![](results/1st_result.png)
 
-I am currently training with multiple datasets and mixture of thoese datasets and you and see their results [here](https://docs.google.com/spreadsheets/d/1-GqSu9oU1fU2ZA8MORzvkJc5fTDhdBwhvfcCna6xJQU/edit?usp=sharing).
+I am currently training with multiple datasets and mixture of thoese datasets and you and see their results [here](https://docs.google.com/spreadsheets/d/1-GqSu9oU1fU2ZA8MORzvkJc5fTDhdBwhvfcCna6xJQU/edit#gid=660197613).
