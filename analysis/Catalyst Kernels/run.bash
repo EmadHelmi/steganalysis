@@ -4,7 +4,7 @@ DatasetPath="$HOME/myworks/stego/datasets"
 DatasetName="Mix"
 
 ResizeMode="PILresize"
-EmbeddingAlgorithm="wow"
+EmbeddingAlgorithm="s-uniward"
 EmbeddingRatio="0.8"
 
 TrainTest="80.20"
