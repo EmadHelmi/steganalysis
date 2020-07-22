@@ -7,7 +7,12 @@ import datetime
 
 from PIL import Image
 
-from models.model_v1_0_0 import build_model
+from models import (
+    model_v1_0_0,
+    model_v1_1_0,
+    model_v1_2_0,
+    model_v1_3_0
+)
 
 parser = argparse.ArgumentParser(
     description='Train Catalyst Kernels algorithm on some dataset')
@@ -19,6 +24,8 @@ parser.add_argument("--strp", help="Stego Train Path (default=dataset/train/steg
                     type=str, default="dataset/train/stego")
 parser.add_argument("--step", help="Stego Test Path (default=dataset/test/stego)",
                     type=str, default="dataset/test/stego")
+parser.add_argument("--model_version", help="Version of the model in d.d.d format (default=1.0.0)",
+                    type=str, default="1.0.0")
 parser.add_argument("--op", help="Output path for saved models",
                     type=str, default="saved_models")
 parser.add_argument("--nc", type=int, default=2,
@@ -28,12 +35,36 @@ parser.add_argument("--ne", type=int, default=100,
 parser.add_argument("--bs", type=int, default=1,
                     help="Batch size (default=1)")
 parser.add_argument("--assert_model", action="store_true",
-                    help="Assert built model or not")
+                    help="Assert built model or not. If you pass this argument the model will be not trained")
 parser.add_argument("--shuffle", action="store_true",
                     help="Wether to shuffle the data or not")
 
 parser.add_argument("-v", default=1,
                     help="Verbosity level (0: silent, 1: complete, 2: compact, default=1)")
+
+
+def get_model(version):
+    """
+    The function will get the model based on the input version.
+
+    Parameters:
+        version (str): Version of the model you want to load in d.d.d format
+
+    Returns:
+        keras.models.Sequential: The built model
+    """
+    print("Load model version %s" % version)
+    if version == "1.0.0":
+        return model_v1_0_0
+    elif version == "1.1.0":
+        return model_v1_1_0
+    elif version == "1.2.0":
+        return model_v1_2_0
+    elif version == "1.3.0":
+        return model_v1_3_0
+    else:
+        print("%s is not a valid version. It should be d.d.d format and must be a valid one." % version)
+        return None
 
 
 class ModelSaver(keras.callbacks.Callback):
@@ -199,7 +230,7 @@ def load_data(
     return (x_train, y_train), (x_test, y_test)
 
 
-def assert_model(input_shape=(1, 128, 128, 1)):
+def assert_model(model_version="1.0.0", input_shape=(1, 128, 128, 1)):
     """
     The function to assert built model with a dummy input.
 
@@ -209,7 +240,10 @@ def assert_model(input_shape=(1, 128, 128, 1)):
         input_shape (tuple): Tuple of the input of the model. It should be in the form of (1, ..., ...).
     """
     test_image = np.random.rand(*input_shape)
-    model = build_model(input_shape)
+    m = get_model(model_version)
+    if not m:
+        return
+    model = m.build_model(input_shape)
     model.summary()
     out = model.predict(test_image)
     assert out.shape == (1, 2)

@@ -16,6 +16,21 @@ This is the basic model represented in the main paper.
 This is a forked version of the main model. In this model we add `Dropout` before some nodes.
 !["V1.1.0"](static/model-V1.1.0.png)
 
+### Model V1.2.0
+
+This is a forked version of the main model. In this model we add `Dropout` before all dense layers.
+!["V1.2.0"](static/model-V1.2.0.png)
+
+### Model V1.3.0
+
+This is a forked version of the main model. In this model we replace `Atrous Conv` In 2nd and 3rd layers with normal conv layers.
+!["V1.3.0"](static/model-V1.3.0.png)
+
+### Model V1.4.0
+
+This is a forked version of the main model. In this model we add `Atrous Conv` In 2nd and 3rd conv layers parallel with the normal conv layers.
+!["V1.4.0"](static/model-V1.4.0.png)
+
 ## How to run the code
 
 You can run the code as below:
