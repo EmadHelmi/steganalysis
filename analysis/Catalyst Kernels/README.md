@@ -75,6 +75,7 @@ python main.py \
 --ctep <cover test path> \
 --strp <stego train path> \
 --step <stego test path> \
+--model_version <version of the model in d.d.d format>
 --nc <number of classes> \
 --ne <number of epochs> \
 --bs <batch size> \
