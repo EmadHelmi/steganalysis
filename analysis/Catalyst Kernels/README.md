@@ -31,6 +31,40 @@ This is a forked version of the main model. In this model we replace `Atrous Con
 This is a forked version of the main model. In this model we add `Atrous Conv` In 2nd and 3rd conv layers parallel with the normal conv layers.
 !["V1.4.0"](static/model-V1.4.0.png)
 
+### Custom model
+
+If you want to check your custom model, just follow these steps :)
+
+1. in the `models` folder make a `.py` file for your model in this format:
+
+    ```python
+    # Your imports goes here
+
+
+    def build_model(input_shape):
+        """
+        Its better to write comments for each function you write :)
+
+        Parameters:
+            input_shape (tuple): The input shape of the model. It should be in the form of (1, ..., ...).
+
+        Returns:
+            TYPE OF RETURNED MODEL: The built model.
+        """
+        # Your model code goes here
+        # define a model variable
+        # return model
+    ```
+
+2. In `utils.py` file in `from models import...` line add your `.py` file you created in `step 1`
+
+3. In `utils.py` file in `get_model` function add another `elif` statement which checks your model version like this:
+
+    ```python
+    elif version == "YOUR MODEL VERSION":
+        # return the model which you import in step 2
+    ```
+
 ## How to run the code
 
 You can run the code as below:

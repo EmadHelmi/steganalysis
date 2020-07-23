@@ -9,7 +9,7 @@ from filters import filters
 
 def build_model(input_shape):
     """
-    The function to build the model based on any architecture.
+    The function to build the model based on 1.2.0 version.
 
     Parameters:
         input_shape (tuple): The input shape of the model. It should be in the form of (1, ..., ...).
