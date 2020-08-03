@@ -11,7 +11,8 @@ from models import (
     model_v1_0_0,
     model_v1_1_0,
     model_v1_2_0,
-    model_v1_3_0
+    model_v1_3_0,
+    model_v1_4_0
 )
 
 parser = argparse.ArgumentParser(
@@ -62,6 +63,8 @@ def get_model(version):
         return model_v1_2_0
     elif version == "1.3.0":
         return model_v1_3_0
+    elif version == "1.4.0":
+        return model_v1_4_0
     else:
         print("%s is not a valid version. It should be d.d.d format and must be a valid one." % version)
         return None

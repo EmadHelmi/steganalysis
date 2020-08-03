@@ -52,6 +52,8 @@ def build_model(input_shape):
 
     # Fully connected Layers, Binary classification
     model.add(Flatten())
+    model.add(Dropout(0.2))
+
     model.add(Dense(200))
 
     model.add(LeakyReLU(alpha=0.1))
