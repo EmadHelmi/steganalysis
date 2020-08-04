@@ -1,7 +1,7 @@
 from keras.models import Sequential
 from keras.layers import (
     Conv2D, Dense,
-    Flatten, BatchNormalization, LeakyReLU, Softmax, Dropout, convolutional
+    Flatten, BatchNormalization, LeakyReLU, Softmax, Dropout
 )
 
 from filters import filters
@@ -31,21 +31,19 @@ def build_model(input_shape):
     model.add(LeakyReLU(alpha=0.1))
 
     # Conv Layer 2, Feature learning
-    model.add(convolutional.AtrousConv2D(
+    model.add(Conv2D(
         5,
-        5,  # nb_row
-        5,  # nb_col
-        atrous_rate=(2, 2)
+        kernel_size=5,
+        dilation_rate=8
     ))
     model.add(BatchNormalization())
     model.add(LeakyReLU(alpha=0.1))
 
     # Conv Layer 3, Feature learning
-    model.add(convolutional.AtrousConv2D(
-        10,
-        5,  # nb_row
-        5,  # nb_col
-        atrous_rate=(2, 2)
+    model.add(Conv2D(
+        5,
+        kernel_size=5,
+        dilation_rate=4
     ))
     model.add(BatchNormalization())
     model.add(LeakyReLU(alpha=0.1))

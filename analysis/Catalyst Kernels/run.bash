@@ -10,7 +10,7 @@ EmbeddingRatio="0.8"
 TrainTest="80.20"
 
 OutputPath="results"
-ModelVersion="1.2.0"
+ModelVersion="1.3.0"
 ModelName=${DatasetName}_${EmbeddingAlgorithm}_${TrainTest}_${EmbeddingRatio}_V${ModelVersion}
 
 python main.py \
